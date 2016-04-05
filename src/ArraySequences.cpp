@@ -33,5 +33,95 @@ Difficulty : Medium
 
 int * find_sequences(int *arr, int len){
 	//Return final array which has 6indexes [AP1_S,AP1_E,AP2_S,AP2_E,GP1_S,GP2_E]
-	return NULL;
+	if (arr == NULL)
+		return NULL;
+	if (len <= 0)
+		return NULL;
+	int *res = (int *)malloc(6 * sizeof(int)), count = 0, j = 1, i = 0, k = 0;
+	for (int l = 0; l < 6; l++)
+	{
+		res[l] = -1;
+	}
+	while (i<len)
+	{
+		if ((arr[i + j] - arr[i + j - 1]) == (arr[i + j + 1] - arr[i + j])){
+			if (res[count]<0)
+				res[count] = i;
+			j++;
+		}
+		else if (res[count] >= 0)
+		{
+			res[++count] = i + j; break;
+		}
+		else
+		{
+			i++;
+		}
+
+
+	}
+
+
+	count++;
+	j = 1;
+	while (k<len)
+	{
+		if (k > res[0] && k >= res[1])
+		{
+			if ((arr[k + j] - arr[k + j - 1]) == (arr[k + j + 1] - arr[k + j]))
+			{
+				if (res[count] < 0)
+				{
+
+					res[count] = k;
+				}
+				j++;
+			}
+
+			else if (res[count] >= 0)
+			{
+				res[++count] = k + j; break;
+			}
+			else
+			{
+				k++;
+			}
+		}
+		else
+			k++;
+
+	}
+	
+	count++;
+	j = 1;
+	k = 0;
+	while (k < len)
+	{
+		if (!((k >= res[0] && k < res[1]) || (k >= res[2] && k < res[3])))
+		{
+			if (((arr[k + j - 1]) * (arr[k + j + 1])) == (arr[k + j])*(arr[k + j]))
+			{
+				if (res[count] < 0)
+				{
+					res[count] = k;
+				}
+				j++;
+			}
+
+			else if (res[count] >= 0){
+				res[++count] = k + j; break;
+			}
+			else
+			{
+				k++;
+			}
+
+		}
+		else
+			k++;
+	}
+
+	return res;
+
+
 }

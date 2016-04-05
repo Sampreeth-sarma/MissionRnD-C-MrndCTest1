@@ -54,8 +54,8 @@ namespace spec
 		[TestMethod, Timeout(2000)]
 		void Sample2_ArraySequences()
 		{
-			int input[10] = { 1, 2, 3, 5, 10, 15, 30, 60 };
-			int ans[6] = { 0, 2, 3, 5, 5, 7 };
+			int input[10] = { 1, 3, 5, 7, 2, 4, 8, 16, 18, 20 };
+			int ans[6] = { 0, 3, 7, 9, 4, 7 };
 			int len = 8;
 			int *res = find_sequences(input, len);
 			int check = compare_arrays(res, ans);
